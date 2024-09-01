@@ -1,19 +1,34 @@
 {
-    "family": "my-task-family",
+    "family": "reactapp-task-family",
     "networkMode": "awsvpc",
     "containerDefinitions": [
       {
         "name": "reactapp",
-        "image": "nginx",
+        "image": "381492217817.dkr.ecr.us-east-2.amazonaws.com/dev/project1:latest",
         "essential": true,
         "portMappings": [
           {
             "containerPort": 80,
-            "hostPort": 80
+            "hostPort": 80,
+            "protocol": "tcp"
           }
         ],
         "memory": 512,
-        "cpu": 256
+        "cpu": 256,
+        "environment": [
+          {
+            "name": "NODE_ENV",
+            "value": "production"
+          }
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/reactapp",
+            "awslogs-region": "us-east-2",
+            "awslogs-stream-prefix": "ecs"
+          }
+        }
       }
     ],
     "requiresCompatibilities": [
@@ -21,4 +36,6 @@
     ],
     "cpu": "256",
     "memory": "512"
-  }  
+    
+  }
+  
