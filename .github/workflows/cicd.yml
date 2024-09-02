@@ -7,7 +7,7 @@ on:
 env:
   AWS_REGION: us-east-2                 
   ECR_REPOSITORY: dev/project1        
-  ECS_SERVICE: dev           
+  ECS_SERVICE: dev1           
   ECS_CLUSTER: MY_ECS_CLUSTER                 
   ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION.json
   CONTAINER_NAME: reactapp
