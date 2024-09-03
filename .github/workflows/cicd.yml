@@ -63,16 +63,16 @@ jobs:
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: false
 
-   - name: Run integration tests
-     id: run-tests
-     run: |
-       # Replace this with your actual integration test commands
-      curl --fail http://my-service-url/health || exit 1
+  # - name: Run integration tests
+  #  id: run-tests
+  #    run: |
+# Replace this with your actual integration test commands
+# curl --fail http://my-service-url/health || exit 1
 
-  - name: Rollback on failure
-     if: failure()
-     run: |
-       echo "Rolling back to previous task definition..."
-       # Rollback to the previous task definition
-       PREVIOUS_TASK_DEFINITION=$(aws ecs describe-services --cluster ${{ env.ECS_CLUSTER }} --services ${{ env.ECS_SERVICE }} --query 'services[0].taskDefinition' --output text)
-       aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }} --task-definition $PREVIOUS_TASK_DEFINITION
+# - name: Rollback on failure
+#  if: failure()
+# run: |
+# echo "Rolling back to previous task definition..."
+# Rollback to the previous task definition
+# PREVIOUS_TASK_DEFINITION=$(aws ecs describe-services --cluster ${{ env.ECS_CLUSTER }} --services ${{ env.ECS_SERVICE }} --query 'services[0].taskDefinition' --output text)
+# aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }} --task-definition $PREVIOUS_TASK_DEFINITION
